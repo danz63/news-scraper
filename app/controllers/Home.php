@@ -7,6 +7,6 @@ class Home extends Controller
     }
     public function index()
     {
-        view('admin/coba');
+        view('ekstraktor/index');
     }
 }

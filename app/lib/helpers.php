@@ -9,5 +9,9 @@ function url($param = '')
 
 function view($view, $data = [])
 {
+    if (is_array($data)) {
+        extract($data);
+        unset($data);
+    }
     require_once '../app/views/' . $view . '.php';
 }

@@ -6,16 +6,22 @@
     </div>
     <ul>
         <li>
-            <a href="#home">Website</a>
+            <a href="<?= url('dashboard/index') ?>">Beranda</a>
         </li>
         <li>
-            <a href="#news">Log</a>
+            <a href="<?= url('ekstraktor/index') ?>">Ekstraktor</a>
         </li>
         <li>
-            <a href="#contact">User</a>
+            <a href="<?= url('situs/index') ?>">Situs</a>
         </li>
         <li>
-            <a href="#about">Logout</a>
+            <a href="<?= url('scraper/index') ?>">Log</a>
+        </li>
+        <li>
+            <a href="<?= url('pengguna/password') ?>">Ubah Password</a>
+        </li>
+        <li>
+            <a href="<?= url('pengguna/logout') ?>">Logout</a>
         </li>
     </ul>
 </div>
