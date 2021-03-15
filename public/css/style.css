@@ -1,0 +1,254 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Open Sans, sans-serif;
+}
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 992px !important;
+    padding: 16px 0px;
+}
+
+.content-title {
+    font-size: 28;
+}
+
+/* Sidebar style */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    background-color: rgba(17, 24, 39, 1);
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a.active {
+    background-color: #4CAF50;
+    color: rgba(59, 130, 246, 0.5);
+}
+
+.sidebar a:hover:not(.sidebar-brand) {
+    color: rgb(67, 76, 201);
+    border-bottom: 2px solid rgba(67, 76, 201, 0.5);
+}
+
+div.content {
+    margin-left: 250px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+.sidebar a:not(.sidebar-brand) {
+    display: block;
+    color: #f2f2f2;
+    padding: 16px;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(156, 163, 175, 0.5);
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0px 5px;
+}
+
+.sidebar ul li {
+    width: 95%;
+    margin-left: 5px;
+
+}
+
+.sidebar-brand {
+    height: 78px;
+    text-align: center;
+    align-items: center !important;
+    color: #f2f2f2;
+    border-bottom: 1px solid rgba(156, 163, 175, 0.5);
+}
+
+.sidebar-brand a {
+    display: block;
+    padding: 1rem;
+    margin-top: .5rem;
+    margin-right: 0;
+    font-size: 1.25rem;
+    white-space: nowrap;
+
+}
+
+.sidebar-brand h2 {
+    max-width: 100%;
+    max-height: 2rem;
+    padding: .5rem;
+    border: 2px solid rgb(216, 218, 223);
+    border-radius: 50%;
+    display: inline;
+}
+
+.navbar-brand {
+    padding: 1.5rem;
+    border-right: 1px solid rgba(156, 163, 175, 0.5);
+}
+
+.navbar-brand h2 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 900;
+}
+
+/* End of Sidebar style */
+
+/* Topnav Style */
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: rgba(17, 24, 39, 1);
+    margin: -1px -16px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(156, 163, 175, 0.5);
+    position: sticky;
+    top: 0;
+}
+
+/* Style the links inside the navigation bar */
+.topnav span {
+    float: right;
+    color: #f2f2f2;
+    padding: 1.75rem;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+/* End Of Topnav Style */
+
+
+/* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+
+    .container {
+        max-width: 540px;
+    }
+}
+
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+
+    .container {
+        max-width: 720px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar a {
+        float: left;
+    }
+
+    div.content {
+        margin-left: 0;
+    }
+
+    .responsive-table {
+        border: 0;
+    }
+
+    .responsive-table caption {
+        font-size: 1.3em;
+    }
+
+    .responsive-table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .responsive-table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    .responsive-table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    .responsive-table td::before {
+        /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .responsive-table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* // Extra large devices (large desktops) */
+/* // No media query since the extra-large breakpoint has no upper bound on its width */
+
+
+.responsive-table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+.responsive-table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+.responsive-table th,
+.responsive-table td {
+    padding: .625em;
+    text-align: center;
+}
+
+.responsive-table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
