@@ -61,20 +61,17 @@ a {
     overflow: auto;
 }
 
-.sidebar a.active {
-    background-color: #4CAF50;
-    color: rgba(59, 130, 246, 0.5);
-}
 
-.sidebar a:hover:not(.sidebar-brand) {
-    color: rgb(67, 76, 201);
-    border-bottom: 2px solid rgba(67, 76, 201, 0.5);
+.sidebar a:hover:not(.sidebar-brand),
+.sidebar a.active {
+    color: rgb(67, 76, 201) !important;
+    border-bottom: 2px solid rgba(67, 76, 201, 0.5) !important;
 }
 
 div.content {
     margin-left: 250px;
     padding: 1px 16px;
-    height: 1000px;
+    min-height: 1000px;
 }
 
 .sidebar a:not(.sidebar-brand) {
@@ -141,7 +138,6 @@ div.content {
     background-color: rgba(17, 24, 39, 1);
     margin: -1px -16px;
     overflow: hidden;
-    border-bottom: 1px solid rgba(156, 163, 175, 0.5);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -271,6 +267,12 @@ hr {
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    opacity: 0.8;
+}
+
+.btn:hover,
+.btn:focus {
+    opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -329,7 +331,8 @@ hr {
 }
 
 
-.btn-success {
+.btn-success,
+.alert.success {
     color: #fff;
     background-color: #28a745;
     border-color: #28a745;
@@ -388,7 +391,8 @@ hr {
     box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
 }
 
-.btn-danger {
+.btn-danger,
+.alert.danger {
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
@@ -477,7 +481,7 @@ hr {
 .d-flex {
     display: flex !important;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .w-100 {
@@ -497,22 +501,24 @@ hr {
     margin-bottom: 1rem;
     color: #212529;
     border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.534);
 }
 
 .table th,
 .table td {
     padding: 0.75rem;
     vertical-align: middle;
-    border-top: 1px solid #dee2e6;
+    border: 1px solid rgba(0, 0, 0, 0.534);
+    /* border-left: 1px solid #000; */
 }
 
 .table thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.534);
 }
 
-.table tbody+tbody {
-    border-top: 2px solid #dee2e6;
+.table td.button-td {
+    text-align: center;
 }
 
 .table tbody tr:nth-of-type(odd) {
@@ -550,3 +556,136 @@ hr {
 .text-muted {
     color: #6c757d !important;
 }
+
+.content-wrapper {
+    box-sizing: border-box;
+    background-color: #585656;
+    padding: 3rem;
+    border-radius: 0.7rem;
+    margin-top: 2rem;
+    color: #f1f1f1;
+}
+
+.content-wrapper h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.header-left {
+    margin: auto 0px;
+}
+
+/* Modal Style */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding-top: 6rem;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto 5rem auto auto;
+    /* margin: auto; */
+    padding: 0;
+    /* border: 1px solid #888; */
+    width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+#btnCloseModal {
+    color: #f2f2f2;
+    opacity: 0.8;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#btnCloseModal:hover,
+#btnCloseModal:focus {
+    opacity: 1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: rgba(17, 24, 39, 1);
+    color: #f2f2f2;
+}
+
+.modal-header h2 {
+    opacity: 0.9;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+/* End of Modal Style */
+.alert {
+    padding: 20px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin: 15px 0px;
+}
+
+#closeAlert {
+    margin-left: 15px;
+    color: #f2f2f2;
+    opacity: 0.8;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#closeAlert:hover {
+    opacity: 1;
+}
+
+/* Alert Style */
+/* End of Alert Style */

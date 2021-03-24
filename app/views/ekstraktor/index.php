@@ -5,13 +5,13 @@
     <div class="container">
         <div class="row border-top border-bottom">
             <div class="col border-right">
-                <form action="<?= url('extraktor/create'); ?>" class="form">
+                <form action="<?= url('ekstraktor/create'); ?>" class="form" method="POST" enctype="multipart/form-data">
                     <h2 class="content-title">Tambah Ekstraktor</h2>
                     <hr>
                     <label for="filename"><b>Nama File</b> <span class="text-danger">*</span></label>
                     <input type="text" placeholder="Contoh : example_link" name="filename" id="filename" pattern="[^\s]+" required>
-                    <label for="extractor"><b>File Ekstraktor</b> <span class="text-danger">**</span></label>
-                    <input type="file" name="extractor" id="extractor" required>
+                    <label for="ekstraktor"><b>File Ekstraktor</b> <span class="text-danger">**</span></label>
+                    <input type="file" name="ekstraktor" id="ekstraktor" required>
                     <label for="info"><b>File Ekstraktor</b> <span class="text-danger">**</span></label>
                     <textarea name="info" id="info" placeholder="Contoh : File digunakan untuk mengekstrak link situs tujuan" required></textarea>
                     <small class="text-muted"><span class="text-danger">*</span> Nama Tidak boleh Mengandung Spasi</small>
@@ -36,13 +36,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>kompas_url.js</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-success">Edit</a>
-                            </td>
-                        </tr>
+                        <?php foreach ($ekstraktor as $e) : ?>
+                            <tr>
+                                <th scope="row"><?= array_search($e, $ekstraktor) + 1 ?></th>
+                                <td><?= $e['nama']; ?></td>
+                                <td class="button-td">
+                                    <a href="#" class="btn btn-sm btn-success">Edit</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

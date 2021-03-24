@@ -1,5 +1,5 @@
 <?php
 define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', 'mochdani63');
-define('DBNAME', 'db_latihan');
+define('USER', 'usr_scraper');
+define('PASS', '1');
+define('DBNAME', 'news_scraper');

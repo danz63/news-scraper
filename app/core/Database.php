@@ -36,6 +36,7 @@ class Database
             }
             $query = trim(rtrim(trim($query), $operator));
         } else {
+            $query .= "WHERE ";
             foreach ($where as $k => $v) {
                 $query .= "$k='$v'";
                 break;

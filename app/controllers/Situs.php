@@ -1,5 +1,5 @@
 <?php
-class Home extends Controller
+class Situs extends Controller
 {
     public function __construct()
     {
@@ -7,6 +7,6 @@ class Home extends Controller
     }
     public function index()
     {
-        view('home/index');
+        view('situs/index');
     }
 }

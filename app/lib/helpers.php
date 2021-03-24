@@ -7,6 +7,12 @@ function url($param = '')
     return $url . $param;
 }
 
+function redirect($param = '')
+{
+    header('Location:' . url($param));
+    exit;
+}
+
 function view($view, $data = [])
 {
     if (is_array($data)) {
@@ -14,4 +20,36 @@ function view($view, $data = [])
         unset($data);
     }
     require_once '../app/views/' . $view . '.php';
+}
+
+function getActivePage()
+{
+    if (isset($_GET['url']))
+        return $_GET['url'];
+    return 'home/index';
+}
+
+function setFlashData($message = [])
+{
+    $_SESSION['flash'] = $message;
+}
+
+function getFlashData()
+{
+    $flash = false;
+    if (isset($_SESSION['flash'])) {
+        $flash = $_SESSION['flash'];
+        unset($_SESSION['flash']);
+    }
+    return $flash;
+}
+
+function getIndex()
+{
+    if (isset($_GET['url'])) {
+        $url = rtrim($_GET['url'], '/');
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        $url = explode('/', $url);
+        return end($url);
+    }
 }
