@@ -7,6 +7,14 @@ class Situs extends Controller
     }
     public function index()
     {
-        view('situs/index');
+        $data = [
+            'sites' => $this->db->get('situs'),
+            'ekstraktor' => $this->db->get('ekstraktor')
+        ];
+        view('situs/index', $data);
+    }
+    public function create()
+    {
+        var_dump($_POST);
     }
 }

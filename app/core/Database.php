@@ -87,6 +87,7 @@ class Database
             $clause .= $c . "=" . "'" . $v . "', ";
         }
         $values = trim(rtrim(trim($values), ','));
+        $clause = trim(rtrim(trim($clause), ','));
         $query = "UPDATE $table SET $values WHERE $clause";
         $exec = mysqli_query($this->conn, $query);
         if (!$exec) {

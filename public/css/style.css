@@ -13,6 +13,8 @@ a {
     text-decoration: none;
 }
 
+
+
 .border {
     border: 1px solid #64646471 !important;
     border-radius: 4px;
@@ -222,6 +224,76 @@ div.content {
     background: #f1f1f1;
 }
 
+
+.form .box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    background: #f1f1f1;
+}
+
+.form .radio {
+    display: block;
+    position: relative;
+    padding-left: 1.5rem;
+    cursor: pointer;
+    margin: .375rem 1rem;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.form .radio input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.form .radio:hover input[type="radio"]~.checkmark {
+    background-color: #ccc;
+}
+
+.form .radio input[type="radio"]:checked~.checkmark::after {
+    display: block;
+}
+
+.form .radio input[type="radio"]:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+.form .radio .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.form .radio .checkmark::after {
+    top: 6px;
+    left: 6px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: white;
+}
+
+.form .radio .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+
 .form textarea {
     width: 100%;
     padding: 15px;
@@ -268,6 +340,83 @@ hr {
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     opacity: 0.8;
+}
+
+.btn-add:before {
+    content: "";
+    display: block;
+    background: url('../img/icons/database.svg') no-repeat;
+    filter: invert(100);
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin: .1rem .25rem 0 0;
+}
+
+.btn-submit:before {
+    content: "";
+    display: block;
+    background: url('../img/icons/save.svg') no-repeat;
+    filter: invert(100);
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin: .1rem .25rem 0 0;
+}
+
+.btn-edit:before {
+    content: "";
+    display: block;
+    background: url('../img/icons/edit.svg') no-repeat;
+    filter: invert(100);
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin: .1rem .25rem 0 0;
+}
+
+.btn-option:before {
+    content: "";
+    display: block;
+    background: url('../img/icons/ellipsis-h.svg') no-repeat;
+    filter: invert(100);
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin: .1rem .25rem 0 0;
+}
+
+.btn-search:before {
+    content: "";
+    display: block;
+    background: url('../img/icons/search.svg') no-repeat;
+    filter: invert(100);
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin: .1rem .25rem 0 0;
+}
+
+.btn-delete:before {
+    content: "";
+    display: block;
+    background: url('../img/icons/eraser.svg') no-repeat;
+    filter: invert(100);
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin: .1rem .25rem 0 0;
+}
+
+.btn-reset:before {
+    content: "";
+    display: block;
+    background: url('../img/icons/times.svg') no-repeat;
+    filter: invert(100);
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin: .1rem .25rem 0 0;
 }
 
 .btn:hover,
@@ -373,21 +522,21 @@ hr {
 
 
 .btn-warning {
-    color: #212529;
-    background-color: #ffc107;
-    border-color: #ffc107;
+    color: #fff;
+    background-color: #ff9c07;
+    border-color: #ff9c07;
 }
 
 .btn-warning:hover {
-    color: #212529;
-    background-color: #e0a800;
-    border-color: #d39e00;
+    color: #fff;
+    background-color: #ff6207;
+    border-color: #ff6207;
 }
 
 .btn-warning:focus {
-    color: #212529;
-    background-color: #e0a800;
-    border-color: #d39e00;
+    color: #fff;
+    background-color: #ff6207;
+    border-color: #ff6207;
     box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
 }
 
@@ -581,7 +730,7 @@ hr {
     display: none;
     position: fixed;
     z-index: 100;
-    padding-top: 6rem;
+    padding-top: 3rem;
     left: 0;
     top: 0;
     width: 100%;

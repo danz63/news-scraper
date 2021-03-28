@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 20, 2021 at 03:23 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Host: localhost
+-- Waktu pembuatan: 27 Mar 2021 pada 08.16
+-- Versi server: 10.3.27-MariaDB-0+deb10u1
+-- Versi PHP: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,20 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `extractor`
+-- Struktur dari tabel `ekstraktor`
 --
 
-CREATE TABLE `extractor` (
+CREATE TABLE `ekstraktor` (
   `id` int(11) NOT NULL,
   `nama` varchar(64) NOT NULL,
   `lokasi` varchar(64) NOT NULL,
-  `situs_id` int(11) NOT NULL
+  `info` text NOT NULL,
+  `situs_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `ekstraktor`
+--
+
+INSERT INTO `ekstraktor` (`id`, `nama`, `lokasi`, `info`, `situs_id`) VALUES
+(1, 'percobaan.js', 'upload/percobaan.js', 'hanya sedikit percobaan', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `isi_berita`
+-- Struktur dari tabel `isi_berita`
 --
 
 CREATE TABLE `isi_berita` (
@@ -52,7 +59,7 @@ CREATE TABLE `isi_berita` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log`
+-- Struktur dari tabel `log`
 --
 
 CREATE TABLE `log` (
@@ -65,7 +72,7 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `situs`
+-- Struktur dari tabel `situs`
 --
 
 CREATE TABLE `situs` (
@@ -77,7 +84,7 @@ CREATE TABLE `situs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -91,83 +98,83 @@ CREATE TABLE `user` (
 --
 
 --
--- Indexes for table `extractor`
+-- Indeks untuk tabel `ekstraktor`
 --
-ALTER TABLE `extractor`
+ALTER TABLE `ekstraktor`
   ADD PRIMARY KEY (`id`),
   ADD KEY `situs_id` (`situs_id`);
 
 --
--- Indexes for table `isi_berita`
+-- Indeks untuk tabel `isi_berita`
 --
 ALTER TABLE `isi_berita`
   ADD PRIMARY KEY (`id`),
   ADD KEY `situs_id` (`situs_id`);
 
 --
--- Indexes for table `log`
+-- Indeks untuk tabel `log`
 --
 ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `situs`
+-- Indeks untuk tabel `situs`
 --
 ALTER TABLE `situs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `extractor`
+-- AUTO_INCREMENT untuk tabel `ekstraktor`
 --
-ALTER TABLE `extractor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ekstraktor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `isi_berita`
+-- AUTO_INCREMENT untuk tabel `isi_berita`
 --
 ALTER TABLE `isi_berita`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `log`
+-- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `situs`
+-- AUTO_INCREMENT untuk tabel `situs`
 --
 ALTER TABLE `situs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `extractor`
+-- Ketidakleluasaan untuk tabel `ekstraktor`
 --
-ALTER TABLE `extractor`
-  ADD CONSTRAINT `extractor_ibfk_1` FOREIGN KEY (`situs_id`) REFERENCES `situs` (`id`);
+ALTER TABLE `ekstraktor`
+  ADD CONSTRAINT `ekstraktor_ibfk_1` FOREIGN KEY (`situs_id`) REFERENCES `situs` (`id`);
 
 --
--- Constraints for table `isi_berita`
+-- Ketidakleluasaan untuk tabel `isi_berita`
 --
 ALTER TABLE `isi_berita`
   ADD CONSTRAINT `isi_berita_ibfk_1` FOREIGN KEY (`situs_id`) REFERENCES `situs` (`id`);
