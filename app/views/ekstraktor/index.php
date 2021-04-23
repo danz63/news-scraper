@@ -56,8 +56,8 @@
                             <span class="text-danger">**</span> Hanya Ekstensi '.js' Yang Diterima</small>
                         <hr>
                         <div class="d-flex w-50">
-                            <button type="submit" class="btn btn-primary">Update</button>
-                            <button type="reset" class="btn btn-warning">Reset</button>
+                            <button type="submit" class="btn btn-primary btn-submit">Update</button>
+                            <button type="reset" class="btn btn-warning btn-reset">Reset</button>
                         </div>
                     </form>
                 <?php endif; ?>
@@ -69,7 +69,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nama File</th>
+                            <th scope="col">File</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -79,10 +79,11 @@
                                 <th colspan="3">Data Kosong</th>
                             </tr>
                         <?php endif; ?>
+                        <?php $i = 0; ?>
                         <?php foreach ($ekstraktor as $e) : ?>
                             <tr>
-                                <th scope="row"><?= array_search($e, $ekstraktor) + 1 ?></th>
-                                <td><?= $e['nama']; ?></td>
+                                <th scope="row"><?= ++$i ?></th>
+                                <td><?= $e['nama']; ?> <br>(<small><?= $e['info']; ?></small>)</td>
                                 <td class="button-td">
                                     <a href="<?= url('ekstraktor/index/' . $e['id']) ?>" class="btn btn-sm btn-success btn-edit">Edit</a>
                                 </td>

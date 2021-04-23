@@ -57,7 +57,7 @@ class Database
     }
 
 
-    public function insert($table, $data)
+    public function insert($table, $data, $opt = false)
     {
         $columns = '';
         $values = '';
@@ -71,6 +71,9 @@ class Database
         $exec = mysqli_query($this->conn, $query);
         if (!$exec) {
             die("Error description: " . mysqli_error($this->conn));
+        }
+        if ($opt) {
+            return $this->query("SELECT last_insert_id();", 'get');
         }
         return true;
     }
