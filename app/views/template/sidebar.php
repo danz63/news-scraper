@@ -16,6 +16,9 @@
             <a href="<?= url('situs/index') ?>" <?= ($page == 'situs/index') ? 'class=\'active\'' : '' ?>>Situs</a>
         </li>
         <li>
+            <a href="#" <?= ($page == 'scraper/index') ? 'class=\'active\'' : '' ?>>Scraping</a>
+        </li>
+        <li>
             <a href="<?= url('log/index') ?>" <?= ($page == 'log/index') ? 'class=\'active\'' : '' ?>>Log</a>
         </li>
         <li>

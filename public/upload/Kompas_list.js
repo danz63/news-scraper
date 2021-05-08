@@ -11,14 +11,17 @@ for (j = 0; j < anchor.length; j++) {
   // split href agar bisa di cek link yang ada dalam subdomain money.kompas.com
   let split = href.split(".");
   // Jika isi dari href sudah ada dalam array link dan link masih dalam cakupan kategory money
-  if (!link.includes(href) && split[0] == "https://money") {
+  if (!link.includes(href) && split[0] == "https://money" && split[2].match(/com\/read./)) {
     link.push(href);
   }
 }
 // let link : array yang berisi link baca artikel
 let date = new Date();
-date.setHours(date.getHours() + 1);
+date.setMinutes(date.getMinutes() + 2);
 date = date.toUTCString();
 document.body.innerHTML = "";
 let list_link = JSON.stringify(link);
-document.cookie = `link=${link};expires=${date}`;
+// console.log(list_link);
+document.body.innerHTML = list_link;
+// document.cookie = `link=${link};expires=${date}`;
+// window.location.href = "handler.php";

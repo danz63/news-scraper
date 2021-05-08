@@ -837,3 +837,8 @@ hr {
 
 /* Alert Style */
 /* End of Alert Style */
+
+#iframesitus {
+  width: 100%;
+  min-height: 50vh;
+}

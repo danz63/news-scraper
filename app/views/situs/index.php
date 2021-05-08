@@ -36,7 +36,8 @@
                         <td><?= $s['nama_situs']; ?></td>
                         <td><?= $s['url']; ?></td>
                         <td class="button-td">
-                            <a href="<?= url('situs/ekstrak/' . $s['id']) ?>" class="btn btn-sm btn-primary btn-extract">Ekstrak</a>
+                            <!-- url('situs/scrap/' . $s['id']) -->
+                            <a href="<?= url('situs/scrap/' . $s['id']) ?>" class="btn btn-sm btn-primary btn-extract">Ekstrak</a>
                             <a href="#" class="btn btn-sm btn-info btn-detail">Detail</a>
                             <a href="#" class="btn btn-sm btn-success btn-edit" data-id="<?= $s['id']; ?>">Edit</a>
                         </td>
@@ -44,6 +45,7 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <iframe src="" frameborder="2" id="iframesitus"></iframe>
     </div>
 </div>
 <div class="modal">
@@ -58,6 +60,12 @@
     });
     document.getElementById('btnAddSitus').onclick = function() {
         ajax("<?= url('situs/add') ?>");
+    }
+
+    function proses(id) {
+        let iframe = document.getElementById('iframesitus');
+        iframe.src = `<?= url('situs/scrap/') ?>` + id;
+        iframe.scrollIntoView();
     }
 </script>
 <?php view('template/footer'); ?>

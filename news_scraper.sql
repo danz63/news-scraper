@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 27 Mar 2021 pada 08.16
--- Versi server: 10.3.27-MariaDB-0+deb10u1
--- Versi PHP: 7.4.15
+-- Generation Time: May 09, 2021 at 03:21 AM
+-- Server version: 10.3.27-MariaDB-0+deb10u1
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ekstraktor`
+-- Table structure for table `ekstraktor`
 --
 
 CREATE TABLE `ekstraktor` (
@@ -36,22 +36,31 @@ CREATE TABLE `ekstraktor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `ekstraktor`
+-- Dumping data for table `ekstraktor`
 --
 
 INSERT INTO `ekstraktor` (`id`, `nama`, `lokasi`, `info`, `situs_id`) VALUES
-(1, 'percobaan.js', 'upload/percobaan.js', 'hanya sedikit percobaan', NULL);
+(7, 'Kompas_list.js', 'upload/Kompas_list.js', 'ekstrak link dari situs kompas', 5),
+(8, 'Kompas_konten.js', 'upload/Kompas_konten.js', 'ekstrak konten berita dari situs kompas', 5),
+(9, 'Bisnis_link.js', 'upload/Bisnis_link.js', 'ekstrak link dari situs bisnis', 6),
+(10, 'Bisnis_konten.js', 'upload/Bisnis_konten.js', 'ekstrak konten dari situs bisnis', 6),
+(11, 'Okezone_link.js', 'upload/Okezone_link.js', 'ekstrak link dari situs okezone', 7),
+(12, 'Okezone_konten.js', 'upload/Okezone_konten.js', 'ekstrak konten dari situs okezone', 7),
+(13, 'Pikiran_rakyat_link.js', 'upload/Pikiran_rakyat_link.js', 'ekstrak link dari situs pikiran rakyat', 8),
+(14, 'Pikiran_rakyat_konten.js', 'upload/Pikiran_rakyat_konten.js', 'ekstrak konten dari situs pikiran rakyat\r\n', 8);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `isi_berita`
+-- Table structure for table `isi_berita`
 --
 
 CREATE TABLE `isi_berita` (
   `id` int(11) NOT NULL,
   `judul` text NOT NULL,
   `waktu_publikasi` varchar(64) NOT NULL,
+  `img` varchar(256) NOT NULL,
+  `isi` text NOT NULL,
   `situs_id` int(11) NOT NULL,
   `url` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -59,7 +68,7 @@ CREATE TABLE `isi_berita` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log`
+-- Table structure for table `log`
 --
 
 CREATE TABLE `log` (
@@ -72,7 +81,7 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `situs`
+-- Table structure for table `situs`
 --
 
 CREATE TABLE `situs` (
@@ -81,10 +90,20 @@ CREATE TABLE `situs` (
   `url` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `situs`
+--
+
+INSERT INTO `situs` (`id`, `nama_situs`, `url`) VALUES
+(5, 'Kompas', 'https://money.kompas.com/'),
+(6, 'Bisnis', 'https://ekonomi.bisnis.com/'),
+(7, 'Okezone', 'https://economy.okezone.com/'),
+(8, 'Pikiran Rakyat', 'https://www.pikiran-rakyat.com/ekonomi/');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -98,83 +117,83 @@ CREATE TABLE `user` (
 --
 
 --
--- Indeks untuk tabel `ekstraktor`
+-- Indexes for table `ekstraktor`
 --
 ALTER TABLE `ekstraktor`
   ADD PRIMARY KEY (`id`),
   ADD KEY `situs_id` (`situs_id`);
 
 --
--- Indeks untuk tabel `isi_berita`
+-- Indexes for table `isi_berita`
 --
 ALTER TABLE `isi_berita`
   ADD PRIMARY KEY (`id`),
   ADD KEY `situs_id` (`situs_id`);
 
 --
--- Indeks untuk tabel `log`
+-- Indexes for table `log`
 --
 ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `situs`
+-- Indexes for table `situs`
 --
 ALTER TABLE `situs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `ekstraktor`
+-- AUTO_INCREMENT for table `ekstraktor`
 --
 ALTER TABLE `ekstraktor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `isi_berita`
+-- AUTO_INCREMENT for table `isi_berita`
 --
 ALTER TABLE `isi_berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `log`
+-- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `situs`
+-- AUTO_INCREMENT for table `situs`
 --
 ALTER TABLE `situs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `ekstraktor`
+-- Constraints for table `ekstraktor`
 --
 ALTER TABLE `ekstraktor`
   ADD CONSTRAINT `ekstraktor_ibfk_1` FOREIGN KEY (`situs_id`) REFERENCES `situs` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `isi_berita`
+-- Constraints for table `isi_berita`
 --
 ALTER TABLE `isi_berita`
   ADD CONSTRAINT `isi_berita_ibfk_1` FOREIGN KEY (`situs_id`) REFERENCES `situs` (`id`);

@@ -67,4 +67,19 @@ class Situs extends Controller
         setFlashData(['type' => 'success', 'msg' => 'Data situs berhasil diperbaharui']);
         redirect('situs/index');
     }
+
+    public function scrap($id)
+    {
+        $situs = $this->db->getWhere('situs', ['id' => $id]);
+        $ekstraktor = $this->db->getWhere('ekstraktor', ['situs_id' => $id]);
+
+        $scrap = new Scraper();
+        $json = $scrap->getList($situs['url']);
+
+        $json = str_replace('\\/', '/', $json);
+        $arrayLink = json_decode($json);
+        $_SESSION['links'] = array_values($arrayLink);
+        $_SESSION['ekstraktor'] = $ekstraktor[1]['lokasi'];
+        redirect('scraper/index');
+    }
 }

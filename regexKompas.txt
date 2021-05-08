@@ -1,1 +1,12 @@
-<a.+?href="(.*?https:\/\/money.kompas\.com.*?)"
+<a.+?href="(.*?https:\/\/money.kompas\.com\/read.*?)"
+<a.+?href="(.*?https:\/\/www.pikiran-rakyat.com\/ekonomi\/.*?)"
+<a.+?href="(.*?https:\/\/economy.okezone.com\/read.*?)"
+<a.+?href="(.*?https:\/\/ekonomi.bisnis.com\/read.*?)"
+
+Kompas Konten
+Judul
+<.+?class=".*?read__title.*?">(.*?)<.+?>
+Waktu Publikasi
+<.+?class=".*?read__time.*?">(.*?)<.+?>
+Foto
+<img.+?src="(.*?)" alt="(.*?)">
