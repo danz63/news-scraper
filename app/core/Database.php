@@ -143,4 +143,18 @@ class Database
         }
         return $data;
     }
+
+    public function pluck($table = '', $column = '')
+    {
+        $query = "SELECT $column FROM $table";
+        $execQuery = mysqli_query($this->conn, $query);
+        if (!$execQuery) {
+            die("Error description: " . mysqli_error($this->conn));
+        }
+        $data = [];
+        while ($row = mysqli_fetch_assoc($execQuery)) {
+            $data[] = $row[$column];
+        }
+        return $data;
+    }
 }

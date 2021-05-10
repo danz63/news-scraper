@@ -22,20 +22,23 @@ if (document.getElementById("closeAlert")) {
   };
 }
 
-function ajax(url) {
+function ajax(url, respon, method = "get", data = "") {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
-        document.getElementsByClassName("modal")[0].innerHTML = xhr.responseText;
-        document.getElementsByClassName("modal")[0].style.display = "block";
-      } else {
-        console.log(xhr);
+        respon(xhr);
       }
     }
   };
-  xhr.open("get", url);
-  xhr.send();
+  if (method == "get") {
+    xhr.open("get", url, true);
+    xhr.send();
+  } else {
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("links=" + data);
+  }
 }
 
 function closeModal() {

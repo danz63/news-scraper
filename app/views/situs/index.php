@@ -45,7 +45,6 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <iframe src="" frameborder="2" id="iframesitus"></iframe>
     </div>
 </div>
 <div class="modal">
@@ -55,17 +54,17 @@
     btnEdit.forEach(e => {
         e.addEventListener('click', function() {
             let situs_id = this.getAttribute('data-id');
-            ajax("<?= url('situs/edit/') ?>" + situs_id);
+            ajax("<?= url('situs/edit/') ?>" + situs_id, function(response) {
+                document.getElementsByClassName("modal")[0].innerHTML = response.responseText;
+                document.getElementsByClassName("modal")[0].style.display = "block";
+            });
         });
     });
     document.getElementById('btnAddSitus').onclick = function() {
-        ajax("<?= url('situs/add') ?>");
-    }
-
-    function proses(id) {
-        let iframe = document.getElementById('iframesitus');
-        iframe.src = `<?= url('situs/scrap/') ?>` + id;
-        iframe.scrollIntoView();
+        ajax("<?= url('situs/add') ?>", function(response) {
+            document.getElementsByClassName("modal")[0].innerHTML = response.responseText;
+            document.getElementsByClassName("modal")[0].style.display = "block";
+        });
     }
 </script>
 <?php view('template/footer'); ?>

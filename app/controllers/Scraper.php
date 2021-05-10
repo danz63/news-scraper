@@ -56,9 +56,14 @@ class Scraper extends Controller
 
     public function insert($json = '')
     {
+        // menghapus anchor
         $json = preg_replace('/<a.*?>(.*?)<\/a>/', '$1', $json);
+
         $result = json_decode($json, true);
+
+        // Menambahkan tag small untuk penanda detail foto
         $isi_berita = $this->parseIsiBerita($result['photo_detail'], $result['article_text']);
+
         $indexLink = explode('/', $_GET['url']);
         $indexLink = end($indexLink);
         $url = $_SESSION['links'][$indexLink];

@@ -27,11 +27,20 @@
     </div>
 </div>
 <script>
-    let btnProses = document.querySelector('.btn-proses');
-    console.log(btnProses);
-    setInterval(() => {
-        btnProses.click();
-        window.location.reload();
-    }, 2000);
+    document.querySelector('.btn-proses').click();
+    window.focus();
+    let dataLink = `<?= json_encode($_SESSION['links'], JSON_PRETTY_PRINT); ?>`;
+    setInterval(callAjax, 2000);
+
+    function callAjax() {
+        ajax(`<?= url('situs/checkHandler') ?>`, checkStatus, "post", dataLink);
+    }
+
+    function checkStatus(response) {
+        response = JSON.parse(response.responseText);
+        if (response.msg) {
+            location.reload();
+        }
+    }
 </script>
 <?php view('template/footer'); ?>

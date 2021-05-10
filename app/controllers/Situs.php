@@ -35,8 +35,7 @@ class Situs extends Controller
         $id = $this->db->insert('situs', $data, true)['last_insert_id()'];
 
         // update data ekstaktor (kolom situs_id)
-        $this->db->update('ekstraktor', ['situs_id' => $id], ['id' => $_POST['ekstraktor1']]);
-        $this->db->update('ekstraktor', ['situs_id' => $id], ['id' => $_POST['ekstraktor2']]);
+        $this->db->update('ekstraktor', ['situs_id' => $id], ['id' => $_POST['ekstraktor']]);
 
         setFlashData(['type' => 'success', 'msg' => 'Data situs berhasil ditambahkan']);
         redirect('situs/index');
@@ -61,8 +60,7 @@ class Situs extends Controller
         $this->db->update('situs', $data, ['id' => $id]);
 
         // update data ekstaktor (kolom situs_id)
-        $this->db->update('ekstraktor', ['situs_id' => $id], ['id' => $_POST['ekstraktor1']]);
-        $this->db->update('ekstraktor', ['situs_id' => $id], ['id' => $_POST['ekstraktor2']]);
+        $this->db->update('ekstraktor', ['situs_id' => $id], ['id' => $_POST['ekstraktor']]);
 
         setFlashData(['type' => 'success', 'msg' => 'Data situs berhasil diperbaharui']);
         redirect('situs/index');
@@ -78,8 +76,21 @@ class Situs extends Controller
 
         $json = str_replace('\\/', '/', $json);
         $arrayLink = json_decode($json);
+
+        $linksExist = $this->db->pluck('isi_berita', 'url');
+        $arrayLink = array_diff($arrayLink, $linksExist);
         $_SESSION['links'] = array_values($arrayLink);
-        $_SESSION['ekstraktor'] = $ekstraktor[1]['lokasi'];
+        $_SESSION['ekstraktor'] = $ekstraktor['lokasi'];
         redirect('scraper/index');
+    }
+
+    public function checkHandler()
+    {
+        $links = json_decode($_POST['links'], true);
+        $response['msg'] = false;
+        if (count(array_diff($links, $_SESSION['links'])) > 0) {
+            $response['msg'] = true;
+        }
+        echo json_encode($response);
     }
 }
