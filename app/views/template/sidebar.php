@@ -25,7 +25,7 @@
             <a href="<?= url('pengguna/password') ?>" <?= ($page == 'pengguna/password') ? 'class=\'active\'' : '' ?>>Ubah Password</a>
         </li>
         <li>
-            <a href="<?= url('pengguna/logout') ?>" <?= ($page == 'pengguna/logout') ? 'class=\'active\'' : '' ?>>Logout</a>
+            <a href="<?= url('home/logout') ?>" <?= ($page == 'pengguna/logout') ? 'class=\'active\'' : '' ?>>Logout</a>
         </li>
     </ul>
 </div>

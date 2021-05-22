@@ -63,7 +63,7 @@ class Database
         $values = '';
         foreach ($data as $c => $v) {
             $columns .= $c . ", ";
-            $values .= "'" . $v . "', ";
+            $values .= "\"" . $v . "\", ";
         }
         $columns = rtrim($columns, ', ');
         $values = rtrim($values, ', ');
@@ -84,10 +84,10 @@ class Database
         $values = '';
         $clause = '';
         foreach ($data as $c => $v) {
-            $values .= $c . "=" . "'" . $v . "', ";
+            $values .= $c . "=" . "\"" . $v . "\", ";
         }
         foreach ($where as $c => $v) {
-            $clause .= $c . "=" . "'" . $v . "', ";
+            $clause .= $c . "=" . "\"" . $v . "\", ";
         }
         $values = trim(rtrim(trim($values), ','));
         $clause = trim(rtrim(trim($clause), ','));
@@ -139,7 +139,7 @@ class Database
                 $data = $data[0];
             }
         } else {
-            $data = mysqli_affected_rows($execQuery);
+            $data = mysqli_affected_rows($this->conn);
         }
         return $data;
     }

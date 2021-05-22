@@ -9,4 +9,8 @@ class Home extends Controller
     {
         view('home/index');
     }
+    public function logout()
+    {
+        session_destroy();
+    }
 }

@@ -1,4 +1,9 @@
-let title = document.getElementsByClassName("title-premium")[0];
+let title = document.getElementsByClassName("title-premium");
+if(title.length > 0){
+  // return;
+  window.close();
+}
+title = document.getElementsByClassName("title-only")[0];
 title = title.innerHTML;
 let read_time = document.getElementsByClassName("new-description")[0];
 if (read_time.querySelectorAll("a").length > 0) {

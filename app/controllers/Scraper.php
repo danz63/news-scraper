@@ -38,9 +38,15 @@ class Scraper extends Controller
     public function getContent($index = "")
     {
         if (isset($_POST['json'])) {
-            return $this->insert($_POST['json']);
+            $url = $_SESSION['links'][$index];
+            unset($_SESSION['links'][$index]);
+            return $this->insert($_POST['json'], $url);
         }
         $result = $this->cURL($_SESSION['links'][$index]);
+        if (strpos($result, '<h1 class="title-premium">')) {
+            unset($_SESSION['links'][$index]);
+            echo "<script>window.close();</script>";
+        }
         echo $result;
         echo "<script src='" . url($_SESSION['ekstraktor']) . "'></script>";
     }
@@ -54,7 +60,7 @@ class Scraper extends Controller
         view('scraper/index', $data);
     }
 
-    public function insert($json = '')
+    public function insert($json = '', $url)
     {
         // menghapus anchor
         $json = preg_replace('/<a.*?>(.*?)<\/a>/', '$1', $json);
@@ -63,11 +69,9 @@ class Scraper extends Controller
 
         // Menambahkan tag small untuk penanda detail foto
         $isi_berita = $this->parseIsiBerita($result['photo_detail'], $result['article_text']);
+        $isi_berita = str_replace('"', '\"', $isi_berita);
+        $result['title'] = str_replace('"', '\"', $result['title']);
 
-        $indexLink = explode('/', $_GET['url']);
-        $indexLink = end($indexLink);
-        $url = $_SESSION['links'][$indexLink];
-        unset($_SESSION['links'][$indexLink]);
         preg_match('/(https:\/\/.*?\.com)/', $url, $match);
         $situs_id = $this->db->query("SELECT id FROM situs WHERE url LIKE '%{$match[0]}%'", 'get')['id'];
         $data = [
