@@ -1,4 +1,4 @@
-<script src="<?= url('js/script.js') ?>"></script>
+<script src="<?= url('public/js/script.js') ?>"></script>
 </body>
 
 </html>

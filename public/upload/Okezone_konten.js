@@ -1,11 +1,11 @@
-
 title = document.getElementsByClassName("title")[0];
 title = title.getElementsByTagName("h1")[0].innerHTML;
 let read_time = document.getElementsByClassName("reporter")[0].getElementsByTagName("b")[0].innerHTML;
-
+console.clear();
 let photo = document.getElementById("imgCheck");
-let photo_src = photo.getAttribute("src");
-let photo_detail = photo.nextElementSibling.innerHTML;
+
+let photo_src = photo.getAttribute("data-cfsrc");
+let photo_detail = photo.nextElementSibling.nextElementSibling.innerHTML;
 
 let read_content = document.getElementById("contentx");
 let paragraph_article = read_content.getElementsByTagName("p");
@@ -25,6 +25,7 @@ let data = {
   photo_detail,
   article_text: `${article_text}`,
 };
+
 let form = document.createElement("form");
 form.setAttribute("method", "POST");
 form.setAttribute("action", "");
@@ -34,5 +35,6 @@ input.setAttribute("name", "json");
 input.setAttribute("value", JSON.stringify(data));
 form.append(input);
 document.body.innerHTML = "";
+// document.body.innerHTML = JSON.stringify(data);
 document.body.append(form);
 form.submit();

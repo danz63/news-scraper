@@ -16,13 +16,13 @@
             <a href="<?= url('situs/index') ?>" <?= ($page == 'situs/index') ? 'class=\'active\'' : '' ?>>Situs</a>
         </li>
         <li>
-            <a href="#" <?= ($page == 'scraper/index') ? 'class=\'active\'' : '' ?>>Scraping</a>
+            <a href="javascript:void(0)" <?= ($page == 'scraper/index') ? 'class=\'active\'' : '' ?>>Scraping</a>
         </li>
         <li>
-            <a href="<?= url('log/index') ?>" <?= ($page == 'log/index') ? 'class=\'active\'' : '' ?>>Log</a>
+            <a href="<?= url('home/log') ?>" <?= ($page == 'home/log') ? 'class=\'active\'' : '' ?>>Log</a>
         </li>
         <li>
-            <a href="<?= url('pengguna/password') ?>" <?= ($page == 'pengguna/password') ? 'class=\'active\'' : '' ?>>Ubah Password</a>
+            <a href="<?= url('home/password') ?>" <?= ($page == 'home/password') ? 'class=\'active\'' : '' ?>>Ubah Password</a>
         </li>
         <li>
             <a href="<?= url('home/logout') ?>" <?= ($page == 'pengguna/logout') ? 'class=\'active\'' : '' ?>>Logout</a>

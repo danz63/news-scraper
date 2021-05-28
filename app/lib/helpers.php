@@ -19,7 +19,7 @@ function view($view, $data = [])
         extract($data);
         unset($data);
     }
-    require_once '../app/views/' . $view . '.php';
+    require_once 'app/views/' . $view . '.php';
 }
 
 function getActivePage()
@@ -52,4 +52,24 @@ function getIndex()
         $url = explode('/', $url);
         return end($url);
     }
+}
+
+function parseContent($content = "")
+{
+    preg_match('/<small.*?class=\'img-info\'>(.*?)<\/small>/', $content, $deskripsi);
+    $isi = trim(str_replace($deskripsi[0], "", $content));
+    $deskripsi = $deskripsi[1];
+    $data = ['desc' => $deskripsi, 'isi' => $isi];
+    return $data;
+}
+
+function filterStrongText($str = "")
+{
+    if (strpos($str, '<strong>')) {
+        $str = str_replace('<strong>', '', $str);
+        if (strpos($str, '</strong>')) {
+            $str = str_replace('</strong>', '', $str);
+        }
+    }
+    return $str;
 }

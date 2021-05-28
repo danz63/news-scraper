@@ -21,7 +21,7 @@ class Scraper extends Controller
     {
         $response = $this->cURL($url);
         $listHref = $this->getHref($response, $url);
-        return json_encode($listHref, JSON_PRETTY_PRINT);
+        return $listHref;
     }
 
     public function getHref($html = '', $url = '')
@@ -43,6 +43,8 @@ class Scraper extends Controller
             return $this->insert($_POST['json'], $url);
         }
         $result = $this->cURL($_SESSION['links'][$index]);
+
+
         if (strpos($result, '<h1 class="title-premium">')) {
             unset($_SESSION['links'][$index]);
             echo "<script>window.close();</script>";
@@ -56,7 +58,16 @@ class Scraper extends Controller
         $data = [
             'ekstraktor' => $_SESSION['ekstraktor']
         ];
-        // unset($_SESSION['ekstraktor']);
+        if (count($_SESSION['links']) < 1) {
+            unset($_SESSION['ekstraktor']);
+            $user_id = $this->db->getWhere('user', ['username' => $_SESSION['username']])['id'];
+            $this->db->insert('log', [
+                'user_id' => $user_id,
+                'situs_id' => $_SESSION['situs_id']
+            ]);
+            unset($_SESSION['situs_id']);
+            redirect('situs/index');
+        }
         view('scraper/index', $data);
     }
 

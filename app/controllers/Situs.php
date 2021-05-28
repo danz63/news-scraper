@@ -72,15 +72,15 @@ class Situs extends Controller
         $ekstraktor = $this->db->getWhere('ekstraktor', ['situs_id' => $id]);
 
         $scrap = new Scraper();
-        $json = $scrap->getList($situs['url']);
-
-        $json = str_replace('\\/', '/', $json);
-        $arrayLink = json_decode($json);
+        $arrayLink = $scrap->getList($situs['url']);
 
         $linksExist = $this->db->pluck('isi_berita', 'url');
         $arrayLink = array_diff($arrayLink, $linksExist);
+
+
         $_SESSION['links'] = array_values($arrayLink);
         $_SESSION['ekstraktor'] = $ekstraktor['lokasi'];
+        $_SESSION['situs_id'] = $id;
         redirect('scraper/index');
     }
 
