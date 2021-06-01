@@ -56,10 +56,13 @@ function getIndex()
 
 function parseContent($content = "")
 {
+    $data = ['desc' => '', 'isi'=>$content];
     preg_match('/<small.*?class=\'img-info\'>(.*?)<\/small>/', $content, $deskripsi);
-    $isi = trim(str_replace($deskripsi[0], "", $content));
-    $deskripsi = $deskripsi[1];
-    $data = ['desc' => $deskripsi, 'isi' => $isi];
+    if(is_array($deskripsi)){
+        $isi = trim(str_replace($deskripsi[0], "", $content));
+        $deskripsi = $deskripsi[1];
+        $data = ['desc' => $deskripsi, 'isi' => $isi];
+    }
     return $data;
 }
 

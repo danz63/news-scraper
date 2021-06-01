@@ -4,9 +4,9 @@ class Home extends Controller
     public function __construct()
     {
         parent::__construct();
-        $reqLogin = ['home/index', 'home/log', 'home/changepassword'];
+        $reqLogin = ['home/list', 'home/read', 'home/login'];
         $activePage = getActivePage();
-        if (in_array($activePage, $reqLogin)) {
+        if (!in_array($activePage, $reqLogin)) {
             if (!isset($_SESSION['username'])) {
                 redirect('home/list');
             }
