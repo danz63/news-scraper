@@ -35,8 +35,8 @@ class Scraper extends Controller
         }
         $regex = '/<a.+?href="(.*?' . $url . '.*?)"/';
         preg_match_all($regex, $html, $match);
-        var_dump($regex);
-        die;
+        // var_dump($url);
+        // die;
         return array_values(array_unique($match[1]));
     }
 
