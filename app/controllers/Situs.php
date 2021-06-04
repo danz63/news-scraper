@@ -73,7 +73,6 @@ class Situs extends Controller
 
         $scrap = new Scraper();
         $arrayLink = $scrap->getList($situs['url']);
-
         $linksExist = $this->db->pluck('isi_berita', 'url');
         $arrayLink = array_diff($arrayLink, $linksExist);
 

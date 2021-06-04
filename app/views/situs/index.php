@@ -36,9 +36,7 @@
                         <td><?= $s['nama_situs']; ?></td>
                         <td><?= $s['url']; ?></td>
                         <td class="button-td">
-                            <!-- url('situs/scrap/' . $s['id']) -->
                             <a href="<?= url('situs/scrap/' . $s['id']) ?>" class="btn btn-sm btn-primary btn-extract">Ekstrak</a>
-                            <a href="#" class="btn btn-sm btn-info btn-detail">Detail</a>
                             <a href="#" class="btn btn-sm btn-success btn-edit" data-id="<?= $s['id']; ?>">Edit</a>
                         </td>
                     </tr>

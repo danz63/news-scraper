@@ -28,7 +28,7 @@ class Ekstraktor extends Controller
         $ekstensi = explode('.', $file['name']);
         $ekstensi = end($ekstensi);
         $nama = $_POST['filename'] . '.' . $ekstensi;
-        $path = 'upload/' . $nama;
+        $path = 'public/upload/' . $nama;
         if (!move_uploaded_file($file['tmp_name'], $path)) {
             setFlashData(['type' => 'danger', 'msg' => 'Upload file gagal']);
             redirect('ekstraktor/index');

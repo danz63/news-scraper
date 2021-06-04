@@ -26,12 +26,17 @@ class Scraper extends Controller
 
     public function getHref($html = '', $url = '')
     {
+        if (substr($url, -1) != '/') {
+            $url = $url . "/";
+        }
         $url = str_replace('/', '\\/', $url);
         if (!strpos($url, 'pikiran-rakyat')) {
             $url = $url . "read";
         }
         $regex = '/<a.+?href="(.*?' . $url . '.*?)"/';
         preg_match_all($regex, $html, $match);
+        var_dump($regex);
+        die;
         return array_values(array_unique($match[1]));
     }
 

@@ -4,13 +4,6 @@ class Home extends Controller
     public function __construct()
     {
         parent::__construct();
-        $reqLogin = ['home/list', 'home/read', 'home/login'];
-        $activePage = getActivePage();
-        if (!in_array($activePage, $reqLogin)) {
-            if (!isset($_SESSION['username'])) {
-                redirect('home/list');
-            }
-        }
     }
 
     public function index()
@@ -80,6 +73,9 @@ class Home extends Controller
 
     public function password()
     {
+        if (!isset($_SESSION['username'])) {
+            redirect('home/list');
+        }
         if (isset($_POST['submit'])) {
             $username = $_SESSION['username'];
             $rowData = $this->db->getWhere('user', [
@@ -107,6 +103,9 @@ class Home extends Controller
 
     public function log()
     {
+        if (!isset($_SESSION['username'])) {
+            redirect('home/list');
+        }
         $query = "SELECT a.*, b.username, c.nama_situs FROM log a JOIN user b ON a.user_id=b.id JOIN situs c ON a.situs_id=c.id ORDER BY a.waktu DESC";
         $dataLog = $this->db->query($query, "get");
         $data = [
@@ -117,6 +116,9 @@ class Home extends Controller
 
     public function logout()
     {
+        if (!isset($_SESSION['username'])) {
+            redirect('home/list');
+        }
         unset($_SESSION['username']);
         redirect('home/login');
     }

@@ -20,14 +20,23 @@
             </thead>
             <tbody>
                 <?php $i = 0; ?>
-                <?php foreach ($logs as $log) : ?>
+                <?php if (isset($logs['username'])) : ?>
                     <tr>
                         <th scope="row"><?= ++$i ?></th>
-                        <td><?= $log['username']; ?></td>
-                        <td><?= $log['nama_situs']; ?></td>
-                        <td><?= $log['waktu']; ?></td>
+                        <td><?= $logs['username']; ?></td>
+                        <td><?= $logs['nama_situs']; ?></td>
+                        <td><?= $logs['waktu']; ?></td>
                     </tr>
-                <?php endforeach; ?>
+                <?php else : ?>
+                    <?php foreach ($logs as $log) : ?>
+                        <tr>
+                            <th scope="row"><?= ++$i ?></th>
+                            <td><?= $log['username']; ?></td>
+                            <td><?= $log['nama_situs']; ?></td>
+                            <td><?= $log['waktu']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
