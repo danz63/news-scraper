@@ -6,6 +6,7 @@ class App
     protected $params = [];
     public function __construct()
     {
+        // "home/list"
         $url = $this->parse();
         $url[0] = isset($url[0]) ? ucfirst($url[0]) : $this->controller;
         if (file_exists('app/controllers/' . $url[0] . '.php')) {

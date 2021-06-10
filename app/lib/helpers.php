@@ -56,26 +56,23 @@ function getIndex()
 
 function parseContent($content = "")
 {
-    $data = ['desc' => '', 'isi' => $content];
-    preg_match('/<small.*?class=\'img-info\'>(.*?)<\/small>/', $content, $deskripsi);
-    if (is_array($deskripsi) && count($deskripsi) > 1) {
-        $isi = trim(str_replace($deskripsi[0], "", $content));
-        $deskripsi = $deskripsi[1];
-        $data = ['desc' => $deskripsi, 'isi' => $isi];
+    $match = preg_match("/<small.*?>(.*?)<\/small>/", $content);
+    if ($match) {
+        preg_match("/<small.*?>(.*?)<\/small>/", $content, $match);
+        $data = ['desc' => $match[0], 'isi' => strip_tags($content, '<p><a>')];
     } else {
-        preg_replace('/(<small.*?class=\'img-info\'>.*?)/','', $content);
-        $data['isi'] = $content;
+        $data = ['desc' => '', 'isi' => strip_tags($content, '<p><a>')];
     }
     return $data;
 }
 
 function filterStrongText($str = "")
 {
-    if (strpos($str, '<strong>')) {
-        $str = str_replace('<strong>', '', $str);
-        if (strpos($str, '</strong>')) {
-            $str = str_replace('</strong>', '', $str);
-        }
-    }
-    return $str;
+    // if (strpos($str, '<strong>')) {
+    //     $str = str_replace('<strong>', '', $str);
+    //     if (strpos($str, '</strong>')) {
+    //         $str = str_replace('</strong>', '', $str);
+    //     }
+    // }
+    return strip_tags($str, '<p>');
 }

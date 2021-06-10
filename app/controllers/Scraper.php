@@ -3,6 +3,9 @@ class Scraper extends Controller
 {
     public function cURL($url = '')
     {
+        if (!isset($_SESSION['username'])) {
+            redirect('home/list');
+        }
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);

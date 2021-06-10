@@ -14,16 +14,31 @@
                         <h4><?= $n['judul']; ?></h4>
                     </a>
                     <p><small><?= $n['waktu_publikasi']; ?></small></p>
-                    <p><?= filterStrongText($n['sub_news']) ?> <a href="<?= url('home/read/' . $n['id']) ?>" class="read-more">Baca Selengkapnya</a></p>
+                    <p><?= filterStrongText($n['sub_news']) ?>
+                        <a href="<?= url('home/read/' . $n['id']) ?>" class="read-more">Baca Selengkapnya</a>
+                    </p>
                     <p>Artikel Asli : <a href="<?= $n['url'] ?>" class="read-more"><?= $n['nama_situs']; ?></a></p>
                 </div>
             </div>
         <?php endforeach; ?>
+        <?php
+        $startPage = $page - 2;
+        $endPage = $page + 2;
+
+        if ($startPage <= 0) {
+            $endPage -= ($startPage - 1);
+            $startPage = 1;
+        }
+
+        if ($endPage > $pagination)
+            $endPage = $pagination;
+        ?>
         <div class="pagination">
             <?php if ($page > 1) : ?>
                 <a href="<?= url('home/list/' . ($page - 1)) ?>" class="direct">&lt; Prev</a>
+                <a href="<?= url('home/list/1') ?>" class="direct">&lt;&lt;</a>
             <?php endif; ?>
-            <?php for ($i = 1; $i <= $pagination; $i++) : ?>
+            <?php for ($i = $startPage; $i <= $endPage; $i++) : ?>
                 <?php if ($i == $page) : ?>
                     <a href="javascript:void(0)" class="active"><?= $i; ?></a>
                 <?php else : ?>
@@ -31,6 +46,7 @@
                 <?php endif; ?>
             <?php endfor; ?>
             <?php if ($page < $pagination) : ?>
+                <a href="<?= url('home/list/' . $pagination) ?>" class="direct">&gt;&gt;</a>
                 <a href="<?= url('home/list/' . ($page + 1)) ?>" class="direct">Next &gt;</a>
             <?php endif; ?>
         </div>

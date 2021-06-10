@@ -8,6 +8,9 @@ class Home extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['username'])) {
+            redirect('home/list');
+        }
         view('home/index');
     }
 

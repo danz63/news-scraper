@@ -4,6 +4,9 @@ class Situs extends Controller
     public function __construct()
     {
         parent::__construct();
+        if (!isset($_SESSION['username'])) {
+            redirect('home/list');
+        }
     }
 
 
